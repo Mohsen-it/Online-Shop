@@ -1,0 +1,56 @@
+@using OnlineShopping.Models
+@using X.PagedList.Mvc.Core
+@*@model X.Pageborder-block-colorPagedList<Products>
+*@
+@model X.PagedList.IPagedList<Products>
+<br />
+<br />
+@{
+    ViewData["Title"] = "Home Page";
+}
+<br />
+<br />
+ <div class="w3-container w3-padding-64 w3-center" id="team">
+    <div class="w3-row">
+    @foreach (var product in Model)
+    {
+            <div class="w3-quarter" >
+                <img src="~/@product.Image" alt="Boss" style="height:150px;width:150px;" class="w3-circle w3-hover-opacity">
+                <h3>@product.Name</h3>
+                <h3 style="color:red">@product.Price $</h3>
+                <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn pull-right btn-outline-info" style="color:black">Deatils</a>
+            </div>
+    }
+        </div>
+    </div>
+
+@*<div class="row" >
+    @foreach (var product in Model)
+    {
+        <div class="col-4" >
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <label style="font-size: 23px;color: steelblue">@product.Name</label>
+                    </h4>
+                </div>
+                <img src="~/@product.Image" alt="Card Image" class="card-img-top" style="height: 300px;" />
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="footer">
+                            <label style="font-size: 18px;color: Red"><b>Price : @product.Price $</b></label>
+                        </div>
+                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn pull-right btn-outline-info" style="color:black">Deatils</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+*@
+
+<div>
+    @Html.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c))
+</div>
+
+
